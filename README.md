@@ -8,6 +8,12 @@ Don't Lose It 面向在图书馆、咖啡馆等临时地点学习的大学生。
 
 它不是 AirTag 式实时追踪器，也不是普通库存清单。产品希望同时提供两种价值：**真正有用的离场核对**，以及**愿意每天收藏和回看的视觉手账**。
 
+<p align="center">
+  <img src="docs/design/assets/today-journal-high-fidelity.png" alt="Don't Lose It 复古手账风今日首页，包含日期、物品贴纸和开始守护按钮" width="360">
+  <br>
+  <sub>高保真视觉样页 · 今日手账 A「自由拼贴」构图</sub>
+</p>
+
 ## 核心体验
 
 ```text
@@ -46,6 +52,18 @@ Don't Lose It 面向在图书馆、咖啡馆等临时地点学习的大学生。
 | 完整高保真 Figma 与生产应用 | 尚未开始 |
 
 当前仓库包含**产品 wiki 和一次性设计原型**，还没有正式 iOS 应用。所有相机、AI、定位、权限和导出行为均为模拟，不连接真实系统，不持久化数据。
+
+## 后续计划
+
+后续工作已拆分为带范围和验收条件的 GitHub Issues：
+
+- [#2 验证八条低保真流程的独立可用性](https://github.com/1Max1mus1/Dont-lost-it/issues/2)
+- [#3 确定首页构图并冻结复古手账设计系统](https://github.com/1Max1mus1/Dont-lost-it/issues/3)
+- [#4 技术 Spike：验证物品识别与透明抠图](https://github.com/1Max1mus1/Dont-lost-it/issues/4)
+- [#5 技术 Spike：验证 iPhone 后台离场与返回检测](https://github.com/1Max1mus1/Dont-lost-it/issues/5)
+- [#6 完成 iOS 工程设计与垂直切片任务拆分](https://github.com/1Max1mus1/Dont-lost-it/issues/6)
+- [#7 内部 Alpha：跑通拍照到核对与照片清理](https://github.com/1Max1mus1/Dont-lost-it/issues/7)
+- [#8 校园试用与 V1 发布评审](https://github.com/1Max1mus1/Dont-lost-it/issues/8)
 
 ## 本地预览
 

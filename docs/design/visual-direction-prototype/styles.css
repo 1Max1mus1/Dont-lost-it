@@ -263,3 +263,10 @@ button:focus-visible { outline: 3px solid #b25d45; outline-offset: 3px; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+body.capture-mode { background: var(--paper); }
+.capture-mode .lab-header, .capture-mode .reference-panel, .capture-mode .review-panel, .capture-mode .variant-switcher { display: none; }
+.capture-mode .visual-workspace { display: block; min-height: 0; padding: 0; }
+.capture-mode .phone-stage { display: block; }
+.capture-mode .phone { width: 100%; height: 100vh; min-height: 0; border: 0; border-radius: 0; box-shadow: none; }
+.capture-mode .app { scrollbar-width: none; }
+.capture-mode .app::-webkit-scrollbar { display: none; }

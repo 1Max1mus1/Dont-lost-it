@@ -18,6 +18,9 @@ const items = [
 ];
 
 const app = document.querySelector("#app");
+if (new URLSearchParams(window.location.search).get("capture") === "1") {
+  document.body.classList.add("capture-mode");
+}
 let state = {
   screen: "home",
   variant: readVariant(),
