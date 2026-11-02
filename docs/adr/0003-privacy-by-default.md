@@ -18,7 +18,8 @@ model.
 
 ## Decision
 
-- Record one Guard Point when a Guard Session starts; do not record a route.
+- Record one Guard Point when location is available; do not record a route or
+  invent a point for location-denied manual sessions.
 - Keep the original source photo on-device only while the session is active,
   unless the user explicitly saves it.
 - Persist cropped Sticker Variants as part of the user's collection.
@@ -26,6 +27,15 @@ model.
   unselected Items from share output by default.
 - Keep analytics free of raw photos and precise location values.
 - Preserve useful non-location features when permission is denied.
+
+### 2026-10-28 lifecycle clarification
+
+[ADR 0004](0004-session-and-recovery-lifecycle.md) adds user-confirmed recovery
+behavior, still pending implementation verification. When checking closes with
+unresolved Items, retain only on-device contextual crops, deleting the full source
+photo by default. Delete a recovery crop when the Item is found unless explicitly
+saved. A name-only Item has no fabricated photo evidence. This does not change the
+explicit-save exception for a full original photo.
 
 ## Consequences
 

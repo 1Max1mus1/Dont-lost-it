@@ -5,9 +5,9 @@
 
 # AI 随身物品守护手账 PRD
 
-> 状态：V0.2 已确认
+> 状态：V0.3 设计访谈规则已确认，待原型与真机验证
 >
-> 更新：2026-10-11（Asia/Singapore）
+> 更新：2026-11-02（Asia/Shanghai）
 >
 > 平台：iPhone
 >
@@ -16,11 +16,13 @@
 > 首批场景：图书馆与咖啡馆
 > 核心定位：把桌上的随身物品剪成贴纸，离开时逐件叫你带走的 AI 手账。
 
+V0.3 将设计访谈中逐项确认的规则同步到本文，页面仍为 `draft`。决策与证据见[设计决策记录](design/interaction-decisions.md)，流程见[用户流程](design/user-flows.md)。[低保真页面清单与可点击原型](design/low-fidelity-page-inventory.md)已制作；用户选择的[复古手账视觉方向](design/visual-direction.md)已有三张高保真样页。独立新用户可用性测试和真机验证仍未通过。
+
 ## Product Summary
 
 这是一款兼具实用提醒与情感收藏价值的 AI 产品。用户到达图书馆或咖啡馆后，拍摄桌面上准备使用的物品。AI 识别物品并描边，用户通过“剪刀裁剪”交互把真实物品变成个人贴纸，确认后自动贴入当天手账并开启守护。
 
-App 在用户离开守护地点时提醒核对物品。普通物品可以一次确认，电脑、钥匙、证件等重要物品必须逐件确认。完成核对后，本次手账获得“全员归队”印章。用户可以积累物品贴纸、按天回顾守护记录，并生成隐私安全的分享卡。
+App 在用户离开守护地点时提醒核对物品。普通物品可以一次确认，用户标记为重要的物品必须逐件确认。离场核对中全部带齐后，本次手账获得“全员归队”印章。用户也可复用已有贴纸或使用名称标签开始守护，积累物品贴纸、按天回顾记录，并生成隐私安全的分享卡。
 
 产品不是实时追踪器，也不是通用库存管理工具。它解决的是一个更具体的问题：用户在临时地点使用多件随身物品后，离场时可能无感地遗漏一两件小物品。
 
@@ -66,6 +68,10 @@ App 默认打开“今日手账”，而不是直接启动相机。首页突出�
 
 同一天可以包含多张守护卡片，例如上午的图书馆和下午的咖啡馆。数据上每次守护彼此独立，视觉上统一收纳在当天手账中。
 
+首次使用直接进入空白今日手账，配一句用途说明，不设置独立引导页。底部导航为“手账 / 物品栏”；历史通过日历查看，包包模板位于物品栏，设置放右上角。首页提供次要入口“从已有物品开始”，可选择已有物品并沿用贴纸。
+
+未完成整理时自动保留一份草稿，首页可“继续整理 / 丢弃”。确认开始前不得显示为正在守护。
+
 ### 2. 拍照、识别与剪贴
 
 用户到达图书馆或咖啡馆并展开准备使用的物品后，拍摄一张桌面照片。系统完成以下流程：
@@ -76,9 +82,13 @@ App 默认打开“今日手账”，而不是直接启动相机。首页突出�
 4. 剪刀沿轮廓裁剪，物品成为带白边的照片贴纸。
 5. 已裁剪贴纸落下并叠成一摞。
 6. 用户确认后，贴纸自动排版进本次手账卡片。
-7. 守护任务立即开始。
+7. 按首次权限分流选择自动提醒或手动核对，开始守护；之后无需先手工装饰。
 
 逐件点击同时承担两个作用：确认 AI 识别结果，以及选择本次真正需要守护的物品。用户可以连续快速点击，动画不得阻塞下一次输入。对大量熟悉物品提供“一键剪下全部”。AI 漏识别时，用户可以手动圈选或添加已有物品。
+
+确认页集中显示可编辑的建议名称和每件物品的可选“重要”开关，不额外要求逐件弹窗命名或分类。清单下方显示“还有没拍到的东西吗？”及“添加物品”，不增加必答弹窗。
+
+未入镜且没有已有贴纸的新物品以手写名称标签表示，之后拍到实物时可再生成贴纸。识别或抠图失败同时提供“重试”和“手动添加物品并开始守护”；无照片时不生成虚假的照片证据。
 
 ### 3. 个人物品栏
 
@@ -105,27 +115,36 @@ App 默认打开“今日手账”，而不是直接启动相机。首页突出�
 - 选择包包后，系统可以提示常见但未入镜的物品。
 - 用户不必先选择包包，可以直接拍照开始守护。
 - 守护任务可以包含口袋、手提或临时携带、不属于任何包包模板的物品。
+- 使用模板开始守护时默认不勾选，用户选择今天实际携带的物品，也可点“全选”。
 
 ### 5. 守护任务
 
-用户确认贴纸清单后，系统在设备本地创建守护任务，记录开始时间和固定守护点。系统不保存两地之间的完整移动路线。
+用户确认清单后，系统在设备本地创建守护任务并记录开始时间；定位可用时记录固定守护点，不保存完整移动路线。无定位仍可手动核对，不虚构地点或自动离场能力。
+
+首次清单确认后先说明权限用途，提供“开启自动提醒 / 先用手动核对”。只有选择自动提醒才请求相关系统权限；拒绝后仍可进入手动模式。系统权限不完整时的具体文案与后续补授权流程待设计。
+
+同一时间只开启一个守护任务。开始新任务前先引导核对旧任务；独立待找回记录不阻止新任务。守护中允许通过拍照、物品栏或名称补充物品，沿用当前地点与手账卡。
 
 守护任务至少包含以下状态：
 
-- 草稿：照片已拍摄，但用户尚未确认物品。
+- 草稿：已开始拍照或整理物品，但尚未确认开始；不算正在守护。
 - 守护中：物品清单和守护点已确认。
 - 暂时离开：用户明确表示稍后返回，离场判断暂时静默。
 - 待核对：系统判断用户正在离开，等待用户处理提醒。
 - 寻找中：至少一件物品尚未找到。
-- 已完成：所有必要物品均已确认，或用户明确结束任务。
+- 已完成：所有必要物品均已确认，或用户明确结束本次核对；结束结果必须区分“全员归队”和仍有独立待找回记录。
 
 开始守护后，原始照片仅保存在设备本地。任务完成后自动删除，除非用户主动选择将完整照片保存在手账中。
+
+若结束时仍有待找回物品，仅在本机保留该物品及周围一小块照片；找回后删除局部照片，除非用户主动保存。局部证据保留不代表默认保留完整原图。
 
 ### 6. 离场判定
 
 MVP 仅支持用户主动开始的守护任务。系统根据守护点、离开距离和持续移动综合判断离场，不因一次位置漂移或短距离走动立即触发。
 
 初始测试参数可以采用约 100 米离开半径与持续移动条件，但这些数值属于可调策略，不应散落硬编码在界面或业务流程中。
+
+设计目标是过滤去洗手间和附近移动；实际阈值和 iOS 能力仍需真机验证，不能承诺所有洗手间都在安全半径内。较远距离有意离开且把物品留在原处，例如吃饭或去小卖部，应使用“只是暂离”。
 
 定位被拒绝时，用户仍可创建贴纸、使用物品栏、编辑每日手账，并通过手动结束守护进入核对页；只是无法获得自动离场提醒。
 
@@ -135,12 +154,16 @@ MVP 仅支持用户主动开始的守护任务。系统根据守护点、离开�
 
 通知提供两个固定动作：
 
-- 只是暂离：可选择 10、30 或 60 分钟，期间保持任务但暂停离场判断。
+- 只是暂离：可选择 10、30 或 60 分钟，保留任务和清单，只暂停离场提醒；也可从守护页主动进入。
 - 准备离开：打开完整核对页。
+
+暂离到期仍在远处时，只发一次中性提示“还没回来？可延长暂离或开始核对”。未回应时继续暂停，直到返回或主动处理，不直接改成遗失报警。定位可靠时返回守护点自动恢复，页面同时提供“我回来了”；定位不可用时可手动恢复。暂离不构成防盗保护。
+
+守护页始终提供“准备离开，开始核对”，不要求等待自动提醒。
 
 核对规则：
 
-- 普通物品允许一键确认“都带齐了”。
+- 普通物品既可逐件标记“已带走 / 还没找到”，也允许一键确认“都带齐了”。
 - 用户标记为重要的物品必须逐件确认。
 - 第一次提醒未回应且用户继续移动时，如果仍有重要物品未确认，2–3 分钟后追加一次更直接的提醒。
 - 普通物品最多提醒一次，重要物品最多追加一次，不无限追问。
@@ -157,7 +180,9 @@ MVP 仅支持用户主动开始的守护任务。系统根据守护点、离开�
 - 本次守护地点名称和开始时间。
 - 最近几个包含该物品的守护点。
 
-用户可以选择“找到了”或“暂时找不到”。找到后，贴纸回到手账并完成对应确认；暂时找不到时保留最近出现记录，但不持续无限通知。
+用户可以选择“找到了”或“暂时找不到”。核对期间找到后完成该物品确认；若本次全部带齐则可获得“全员归队”。选择暂时找不到后，可以明确结束本次核对，保留独立的待找回记录，不持续无限通知，也不盖“全员归队”。无照片的名称物品只展示可用记录，不展示虚假原图高亮。
+
+结束时默认删除完整原图，仅保留本机局部照片证据。后来找回时，历史卡改为“已找回”并记录实际找回日期，不补盖“全员归队”。确认找回时播放贴纸回归并盖“找回啦”专属印章，回看静态展示，提供减少动态效果版本；具体动效参数待设计。找回后删除局部照片，除非用户主动保存。
 
 这不是实时追踪能力。系统只能说明物品最近在哪次守护照片和地点记录中出现。
 
@@ -179,7 +204,7 @@ MVP 仅支持用户主动开始的守护任务。系统根据守护点、离开�
 
 MVP 提供可导出的竖版每日分享卡，不提供 App 内关注、评论或公开动态广场。
 
-- 用户在分享前选择展示哪些物品。
+- 默认带入手账中的物品，用户在预览中点选隐藏，确认后再导出。
 - 默认隐藏精确地点、详细时间和重要物品标记。
 - 可以显示“今日在咖啡馆学习”等模糊场景。
 - 分享前必须提供最终预览。
@@ -244,7 +269,7 @@ MVP 提供可导出的竖版每日分享卡，不提供 App 内关注、评论�
 30. As a user, I want the current place recorded when guard mode starts, so that I can later remember where an item was last seen.
 31. As a user, I want the app to avoid recording my full route, so that guard mode does not become continuous surveillance.
 32. As a user, I want the app to recognize meaningful departure instead of every movement, so that I do not receive constant false alarms.
-33. As a user temporarily going to the restroom or counter, I want to mark “just stepping away,” so that my session remains active without repeated reminders.
+33. As a user leaving belongings at the library while going farther away for lunch or shopping, I want to mark “just stepping away,” so that the session is retained while departure reminders pause; nearby restroom or counter movement should instead be filtered.
 34. As a user leaving for good, I want one action to open the complete checklist, so that I can verify everything quickly.
 35. As a user, I want the first notification to feel playful and personal, so that I pay attention without feeling scolded.
 36. As a user, I want the complete list clearly distinguished from the few items shown in the notification, so that I do not mistake a partial list for a complete check.
@@ -258,7 +283,7 @@ MVP 提供可导出的竖版每日分享卡，不提供 App 内关注、评论�
 
 42. As a user who cannot find an item, I want to see where it appeared in the original session photo, so that I can search the right area.
 43. As a user who may have lost an item earlier, I want to see its recent guard points, so that I can identify likely locations.
-44. As a user, I want to mark an item as found, so that it can return to the journal and complete the session.
+44. As a user, I want to mark an item as found, so that it completes the current check or updates an independent recovery record with the actual found date after closure.
 45. As a user who cannot recover an item immediately, I want to preserve its latest appearance record, so that I can continue searching later.
 46. As a user who found everything, I want a satisfying “all returned” stamp, so that completion feels rewarding.
 
@@ -295,11 +320,12 @@ MVP 提供可导出的竖版每日分享卡，不提供 App 内关注、评论�
 - Item represents one specific real-world possession.
 - StickerVariant represents one cutout image associated with an Item.
 - BagTemplate represents a reusable set of Item references; it does not assert current physical location.
-- GuardSession represents one capture-and-check cycle at one guard point.
-- GuardSessionItem snapshots the item, sticker and importance used for that session so later item edits do not rewrite history.
+- GuardSession represents one user-started record-and-check cycle; a valid guard point is required for automatic departure detection, not manual use. At most one current session exists.
+- GuardSessionItem snapshots the item, sticker or name label and importance used for that session. Explicit additions while active and dated recovery events are allowed; later inventory edits do not silently rewrite history.
 - GuardPoint stores one session location and user-facing place label; it is not a route.
 - DailyJournal projects one or more GuardSessions into a date-based presentation.
 - ReminderAttempt records only the minimum information needed to enforce escalation limits and measure behavior.
+- Unresolved recovery records can outlive a closed session without occupying the current-session slot; see [ADR 0004](adr/0004-session-and-recovery-lifecycle.md).
 
 ### Deep Modules and Interfaces
 
@@ -317,7 +343,7 @@ The module owns identity invariants: one real-world item maps to one Item record
 
 #### 3. Guard Session Module
 
-Interface responsibility: start a session from selected items and a guard point, accept user or system events, and return the current state plus permitted next actions.
+Interface responsibility: start a session from selected items, with a guard point when available, accept user or system events, and return the current state plus permitted next actions. Enforce one current session, explicit additions, and closure with independent unresolved recovery records.
 
 This is the central state machine. It owns transitions among draft, guarding, temporarily away, awaiting check, searching and completed. Location, notification and persistence implementations do not own business transitions.
 
@@ -372,11 +398,13 @@ Ports are introduced only where a production and a test adapter are both justifi
 - The user can skip or accelerate repeated animations.
 - Auto-layout starts the session immediately after confirmation; later editing is optional.
 - Motion-reduction settings must replace cutting, stacking and stamping motion with simple transitions while preserving all information.
+- Recovery after closure uses a distinct “找回啦” animation and stamp, records the actual recovery date, and does not retroactively award “全员归队”.
 
 ### Location and Privacy Behavior
 
-- Record one guard point when a session begins; do not record a continuous route.
+- Record one guard point when location is available; manual sessions must not invent a point. Do not record a continuous route.
 - Keep the original photo locally only while the session is active, unless the user explicitly saves it.
+- For unresolved recovery after closure, retain only a local contextual crop; delete it when found unless explicitly saved. A name-only item has no fabricated photo evidence.
 - Persist cropped sticker assets because they are part of the item collection.
 - Precise guard-point data is private by default and excluded from exported share content.
 - Provide clear deletion controls for session and location history.
@@ -427,10 +455,11 @@ Recommended events include:
 #### Guard Session Module
 
 - Covers every valid state transition and rejects invalid transitions.
-- Handles temporary-away durations and resumption.
+- Handles temporary-away durations, one neutral expiry prompt, continued suppression after no response, and reliable-return or manual resumption.
 - Enforces per-item confirmation for important items.
 - Allows bulk confirmation only for ordinary items.
-- Keeps a session open when an item is missing.
+- Keeps a session open while searching until the user explicitly closes checking; unresolved recovery records then persist independently and do not block a new session.
+- Enforces one current session, supports explicit item additions and draft restoration, and does not treat a draft as active protection.
 - Deletes or retains the original photo according to the completion decision.
 
 #### Departure Detection Module
@@ -454,6 +483,7 @@ Recommended events include:
 - Groups sessions by the user’s local date.
 - Keeps sessions from different places separate.
 - Preserves historical sticker and importance snapshots.
+- Keeps the original departure outcome while appending actual recovery dates and distinct recovery feedback.
 - Computes cumulative counts without strict-streak penalties.
 
 #### Privacy-Safe Share Module
@@ -517,7 +547,7 @@ The MVP deliberately tests the manual path before relying on automation. It must
 ### Open Decisions for Design and Technical Discovery
 
 - Product name and final brand system.
-- Exact scrapbook visual language, typefaces, color palette and motion timings.
+- Final Today Journal composition, typefaces, complete design tokens and motion timings within the [selected vintage collage direction](design/visual-direction.md).
 - Exact first-run education and permission copy.
 - Whether image segmentation can meet quality, latency, privacy and cost goals on-device or requires cloud processing.
 - Minimum supported iPhone and iOS versions.
@@ -528,11 +558,11 @@ The MVP deliberately tests the manual path before relying on automation. It must
 
 ### Recommended Next Deliverables
 
-1. Low-fidelity end-to-end user flow covering first use, capture, cutting, active guard, departure, checking, missing item and daily share.
-2. Two to three visual directions for the scrapbook system, followed by one chosen design system.
-3. High-fidelity Figma prototype with interactive cutting, stacking, sticking and reminder flows.
-4. Five-user usability test using the Figma prototype before production implementation.
-5. Technical spikes for cutout quality and background departure detection.
+1. Independent new-user testing of the existing eight low-fidelity flows without verbal guidance.
+2. Review of the three Today Journal compositions and two operational visual samples, followed by one selected design system.
+3. Parallel technical spikes for cutout quality and background departure detection.
+4. High-fidelity Figma prototype with interactive cutting, stacking, sticking and reminder flows.
+5. Five-user usability test using the Figma prototype before production implementation.
 6. iPhone MVP implementation with analytics limited to non-sensitive behavioral events.
 
 ### Commercial Direction
