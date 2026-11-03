@@ -5,6 +5,24 @@
 
 # Development Process
 
+## 开发流程总览
+
+状态更新：2026-11-02（Asia/Shanghai）。低保真流程已完成，独立新用户测试仍未完成；复古手账方向的三张视觉样页作为提前视觉探索已制作，不视为通过任何阶段门槛。各阶段的完整交付物和通过条件保留在下文。
+
+| 阶段 | 主要交付物 | 当前状态 | 通过条件摘要 |
+|---|---|---|---|
+| 0. 产品定义 | 问题、用户、MVP PRD、领域语言和架构草案 | 产品定义已完成 | 定位清晰，MVP 边界可区分 |
+| 1. 低保真体验设计 | 用户流程、核心及异常页面、可点击原型 | 进行中：低保真原型已制作，待独立可用性验证 | 新用户无需讲解完成首次守护，八条流程及恢复路径齐全 |
+| 2. 技术风险验证 | 物品抠图、iPhone 后台离场与返回判定验证 | 未开始，可与视觉评审并行 | 两项都有建议方案，限制写回 UX 和 PRD |
+| 3. 高保真 Figma | 2–3 个视觉方向、选定风格、组件与动效 | 视觉样页预研中；完整 Figma 未开始 | 手账可收藏，核对易读，动效可快速操作并支持减少动态效果 |
+| 4. 原型可用性测试 | 5 位学生的任务测试与修订记录 | 未开始 | 核心路径能完成，主要困惑在开发前解决 |
+| 5. 工程设计与任务拆分 | iOS 栈和最低版本、schema、接口、埋点、任务和测试计划 | 未开始 | 第一个完整闭环无需临时发明产品规则 |
+| 6. 内部 Alpha | 真机跑通拍照到核对、手账和照片清理 | 未开始 | 无严重崩溃、数据丢失或任务卡死，隐私生命周期可验证 |
+| 7. 校园试用 | 5–8 人一周试用和指标证据 | 未开始 | 至少一半自愿完成三次守护，提醒有用、手账值得保存 |
+| 8. Beta 与 V1 | 修复试用阻塞、无障碍、隐私说明和发布决策 | 未开始 | 手动守护可信且可重复，扩展能力有证据支持 |
+
+当前相关材料：[交互决策](../design/interaction-decisions.md)、[用户流程](../design/user-flows.md)、[低保真页面清单](../design/low-fidelity-page-inventory.md)、[视觉方向](../design/visual-direction.md)、[原型计划](../design/prototype-plan.md)、[当前进度](../progress/current.md)。
+
 This process keeps the useful parts of a large product organization—clear
 artifacts, parallel risk reduction, review gates, and measurable evidence—while
 remaining lightweight enough for a student-led project.
@@ -37,7 +55,9 @@ Gate:
 
 ## Phase 1 — Low-fidelity experience design
 
-Status: next.
+Status: in progress. Interaction rules, Markdown flows, a 29-state page inventory
+and an eight-flow clickable prototype are recorded; independent usability evidence
+remains pending. This stage has not passed its gate.
 
 Deliverables:
 

@@ -29,14 +29,16 @@ several Bag Templates.
 
 ### Guard Session / 守护任务
 
-One capture-and-check cycle at one temporary location. A Guard Session starts
-after the user confirms selected stickers and ends after the user completes or
-explicitly closes the item check.
+One user-started record-and-check cycle at one temporary location. A Guard Session
+starts after the user confirms selected items (stickers or name labels) and ends
+after the user completes or explicitly closes the item check. At most one current
+session exists. Independent unresolved recovery records may remain after closure.
 
 ### Guard Point / 守护点
 
-The fixed place recorded when a Guard Session starts. It is not a continuous
-route or a real-time tracker.
+The fixed place recorded when location is available for a Guard Session. It is
+not a continuous route or a real-time tracker. Manual sessions without location
+must not invent a guard point or claim automatic departure detection.
 
 ### Departure Candidate / 离场候选
 
@@ -45,8 +47,12 @@ Point. It is a prompt to check, not proof that the user has permanently left.
 
 ### Temporarily Away / 只是暂离
 
-A user-selected Guard Session state for restroom, counter, or short-break
-scenarios. It suppresses repeated departure decisions for a chosen duration.
+A user-selected state for intentional longer-distance departures, such as leaving
+belongings at the library while going to lunch. It preserves the session and pauses
+departure reminders. Nearby movement should instead be filtered automatically.
+The selected duration triggers at most one neutral expiry prompt; no response
+keeps reminders paused until return or explicit action. Reliable return detection
+or “我回来了” resumes the session's reminder behavior.
 
 ### Important Item / 重要物品
 
@@ -55,9 +61,27 @@ items may be confirmed together.
 
 ### Last Seen Record / 最近出现记录
 
-Evidence that an Item appeared in a Guard Session, including its Sticker
-Variant, Guard Point, time, and temporary source-photo region when available.
-It does not prove the Item remained there after the photograph.
+Evidence that an Item was recorded in a Guard Session, including its sticker or
+name, available location, time, and photo evidence when available. After closure,
+unresolved recovery keeps only a local contextual crop, not the full source photo
+by default. Delete the crop when found unless explicitly saved. Name-only items
+have no fabricated photo evidence. A record does not prove the Item remained there.
+
+### Name Label / 手写名称标签
+
+A text representation for an off-camera or manually added Item without a usable
+sticker. It allows manual guarding without inventing a photo or requiring a cutout.
+
+### Recovery Record / 待找回记录
+
+An unresolved item record that can persist independently after the user explicitly
+closes departure checking. It does not block a new Guard Session. Later recovery
+updates the historical card with the actual recovery date and “已找回”.
+
+### Found Again / 找回啦
+
+The distinct recovery stamp and one-time feedback after later finding an item.
+The original departure outcome is preserved; no retroactive “全员归队” is awarded.
 
 ### Daily Journal / 每日手账
 
@@ -66,8 +90,9 @@ supports reflection and sharing without merging the underlying sessions.
 
 ### All Returned / 全员归队
 
-The completion state and visual stamp used when required Item confirmations are
-finished.
+The visual stamp awarded when all required Item confirmations finish during
+departure checking. Closing with unresolved items does not award it; later
+recovery uses “找回啦” and the actual recovery date.
 
 ## Product distinctions
 

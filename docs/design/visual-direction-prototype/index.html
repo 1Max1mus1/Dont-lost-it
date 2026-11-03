@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Don't Lose It — 复古手账视觉样页</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Three Today Journal compositions in one vintage direction, switchable via ?variant=, on a throwaway visual-study route. -->
+  <header class="lab-header">
+    <div class="lab-brand"><span>VISUAL STUDY · 01</span><strong>Don't Lose It</strong></div>
+    <nav class="sample-nav" aria-label="高保真样页">
+      <button data-screen="home" class="active">今日手账</button>
+      <button data-screen="guard">当前守护</button>
+      <button data-screen="checklist">离场核对</button>
+    </nav>
+    <button class="lab-reset" data-action="reset">重置样页</button>
+  </header>
+
+  <main class="visual-workspace">
+    <aside class="reference-panel">
+      <p class="panel-kicker">SELECTED DIRECTION</p>
+      <h2>Traveler's<br>Notebook</h2>
+      <p>复古手账拼贴，不直接复制参考照片素材。</p>
+      <div class="swatches" aria-label="视觉色板">
+        <span style="--swatch:#f4ebdd">暖纸</span>
+        <span style="--swatch:#24485a">海军蓝</span>
+        <span style="--swatch:#687158">橄榄绿</span>
+        <span style="--swatch:#87464a">酒红</span>
+        <span style="--swatch:#c8a677">牛皮纸</span>
+      </div>
+      <div class="reference-rule">日常浏览浓手账<br>关键核对轻手账</div>
+    </aside>
+
+    <section class="phone-stage" aria-label="手机高保真视觉样页">
+      <div class="phone">
+        <div class="phone-status" aria-hidden="true"><span>9:41</span><span>VISUAL PROTOTYPE</span><span>100%</span></div>
+        <div id="app" class="app"></div>
+      </div>
+    </section>
+
+    <aside class="review-panel">
+      <p class="panel-kicker">REVIEW NOTES</p>
+      <div id="review-copy"></div>
+      <p class="panel-kicker">PROTOTYPE STATE</p>
+      <pre id="state-readout"></pre>
+      <p class="small-note">合成物品与虚构地点。无真实权限、定位、AI 或持久化。</p>
+    </aside>
+  </main>
+
+  <div class="variant-switcher" aria-label="首页构图切换">
+    <button data-action="previous-variant" aria-label="上一个首页构图">←</button>
+    <span id="variant-label"></span>
+    <button data-action="next-variant" aria-label="下一个首页构图">→</button>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

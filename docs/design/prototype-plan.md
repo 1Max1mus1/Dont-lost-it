@@ -11,6 +11,16 @@ Validate that the product is simultaneously delightful enough to revisit and
 clear enough to prevent loss. The prototype must test the complete behavioral
 loop rather than a gallery of attractive isolated screens.
 
+## Current planning evidence
+
+Updated 2026-11-02 (Asia/Shanghai). The [interaction decisions](interaction-decisions.md)
+and [user flows](user-flows.md) are connected in the [29-state low-fidelity
+prototype](low-fidelity-page-inventory.md). The user has selected a [vintage
+Traveler's Notebook collage direction](visual-direction.md), with visual samples
+for Today Journal, Active Guard and Departure Checklist plus three Today Journal
+compositions. Independent usability evidence, full Figma production and device
+validation remain pending. Visual exploration does not pass the low-fidelity gate.
+
 ## Critical flows
 
 ### 1. Today Journal and start
@@ -18,12 +28,19 @@ loop rather than a gallery of attractive isolated screens.
 - Empty-day and returning-user states.
 - One dominant “剪下今天带来的东西” action.
 - Active-session state replaces the start action with session status.
+- Direct first-run entry without standalone onboarding; journal/item-library tabs,
+  calendar history, bag templates inside inventory and settings at upper right.
+- Secondary existing-item route, template items initially unchecked with select-all.
+- Restore/discard one draft; a draft must not imply active protection.
+- Resolve the existing current session before starting another.
 
 ### 2. Capture and AI outline
 
 - Camera guidance for a spread-out tabletop.
 - Processing state.
 - Successful detections, missed detection, processing failure, and retry.
+- Manual-name fallback when image processing fails; off-camera new Items without
+  stickers use handwritten name labels.
 
 ### 3. Cut, stack, and paste
 
@@ -39,12 +56,17 @@ loop rather than a gallery of attractive isolated screens.
 - Create new Item.
 - Correct a mistaken association.
 - Add an off-camera Item or a suggestion from a Bag Template.
+- Review editable suggested names together, without mandatory per-item naming popups.
+- Optional importance toggles and an inline off-camera addition prompt.
 
 ### 5. Active guard
 
 - Guard Point, elapsed time, selected Items, and privacy explanation.
 - Location and notification permission prompts in context.
 - Manual-check fallback when permission is denied.
+- Explain permissions after item confirmation; offer automatic reminders or manual
+  checking before native requests, and clearly label manual mode.
+- Always-visible manual departure checking and in-session item additions.
 
 ### 6. Departure and checklist
 
@@ -53,6 +75,11 @@ loop rather than a gallery of attractive isolated screens.
 - `准备离开` full checklist.
 - Bulk ordinary-item confirmation and individual Important Item confirmation.
 - Direct one-time follow-up for an ignored Important Item.
+- Ordinary Items also support individual checks and missing-item actions.
+- Short-distance filtering is a device-validation target; farther intentional
+  absence uses temporary away without closing the session.
+- Reliable-return resumption plus `我回来了`; one neutral expiry prompt if still
+  away, continued suppression after no response, and extend/check actions.
 
 ### 7. Missing-item recovery
 
@@ -60,6 +87,12 @@ loop rather than a gallery of attractive isolated screens.
 - Sticker, highlighted source-photo region, Guard Point, time, and recent
   appearances.
 - `找到了` and `暂时找不到` endings.
+- Close checking while retaining independent unresolved records; no all-returned
+  stamp, no blockage of a new session.
+- Local contextual crop retention after closure, deletion after recovery unless
+  saved, and honest name-only states without fabricated photo evidence.
+- Later found date and `找回啦` animation/stamp, distinct from all-returned;
+  static history replay and Reduce Motion alternative.
 
 ### 8. Daily Journal and share
 
@@ -67,21 +100,20 @@ loop rather than a gallery of attractive isolated screens.
 - `全员归队` stamp and cumulative collection.
 - Optional layout editing.
 - Privacy controls, exact share preview, and exported vertical card.
+- Journal Items initially included, tap to hide; precise place, detailed times
+  and importance flags hidden by default, export only after preview confirmation.
 
-## Visual directions to explore
+## Selected visual direction
 
-All directions must use real cutout stickers and remain recognizably scrapbook
-rather than becoming a generic cartoon game.
+The user selected a vintage Traveler's Notebook collage reference on 2026-11-02.
+The [visual direction](visual-direction.md) records warm paper, kraft stock, washi
+tape, stamps, handwriting, muted academic colors and real item cutouts. Three Today
+Journal compositions explore free collage, editorial grid and open-notebook layouts;
+they are compositions within one direction, not three competing brand systems.
 
-1. **Quiet study journal:** warm paper, restrained tape, pencil annotations,
-   muted academic colors.
-2. **Playful sticker album:** brighter accents, layered labels, lively stamps,
-   stronger object voices.
-3. **Modern editorial scrapbook:** clean grid, generous whitespace, tactile
-   cutouts, limited hand-drawn details.
-
-Evaluate each direction on collectibility, glanceability, accessibility,
-animation fit, and ease of producing daily share cards.
+All samples must remain recognizably scrapbook rather than becoming a generic
+cartoon game. Evaluate collectibility, glanceability, accessibility, animation fit
+and ease of producing daily share cards.
 
 ## Design-system inventory
 
@@ -96,7 +128,9 @@ animation fit, and ease of producing daily share cards.
 ## Prototype fidelity rules
 
 - Low fidelity validates sequence, hierarchy, state, copy, and recovery.
-- High fidelity begins only after the low-fidelity gate passes.
+- Full high-fidelity Figma production begins after the low-fidelity gate passes.
+  Small throwaway visual-direction samples may be explored earlier; they do not
+  pass the low-fidelity gate or start full phase-3 production.
 - Use representative student belongings rather than abstract placeholders.
 - Never hide a required action inside decorative animation.
 - Make the complete checklist visually unmistakable.
@@ -112,3 +146,15 @@ animation fit, and ease of producing daily share cards.
 - Whether users can recover from an ambiguous AI match.
 - Whether the journal is attractive enough to save or share voluntarily.
 - Any privacy concern raised without prompting.
+- Understanding of manual mode versus drafts and paused reminder state.
+- Whether temporary-away expiry without response causes mistaken expectations.
+- Whether users distinguish original departure success from later recovery.
+
+## Next deliverable
+
+Review the [visual-direction samples](visual-direction.md), select or combine the
+Today Journal compositions and verify that Active Guard and Departure Checklist
+remain glanceable. In parallel, run the eight low-fidelity tasks with independent
+new users and begin the image and departure spikes. Record evidence before full
+high-fidelity Figma production. Final copy, motion timings and device thresholds
+remain open.

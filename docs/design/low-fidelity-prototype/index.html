@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Don't Lose It — 低保真流程原型</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Three Today Journal hierarchy variants, switchable via ?variant=, on a standalone throwaway prototype route. -->
+  <header class="prototype-header">
+    <div>
+      <span class="prototype-kicker">THROWAWAY PROTOTYPE</span>
+      <strong>Don't Lose It</strong>
+      <span>低保真流程验证</span>
+    </div>
+    <div class="prototype-actions">
+      <label for="scenario">测试场景</label>
+      <select id="scenario">
+        <option value="fresh">首次使用</option>
+        <option value="draft">有一份草稿</option>
+        <option value="active">已有当前守护</option>
+        <option value="history">历史与待找回</option>
+      </select>
+      <button class="button button-small button-quiet" data-action="reset">重置</button>
+    </div>
+  </header>
+
+  <main class="prototype-shell">
+    <aside class="flow-sidebar" aria-label="原型流程导航">
+      <p class="sidebar-label">八条验证流程</p>
+      <nav id="flow-nav"></nav>
+      <div class="sidebar-note">
+        <strong>低保真验证范围</strong>
+        <p>顺序、层级、状态、文案和恢复路径。所有相机、AI、定位、权限与导出均为模拟。</p>
+      </div>
+    </aside>
+
+    <section class="device-stage" aria-label="iPhone 可点击原型">
+      <div class="device">
+        <div class="device-status" aria-hidden="true">
+          <span>9:41</span><span>PROTOTYPE</span><span>100%</span>
+        </div>
+        <div id="app" class="app-screen" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <aside class="state-sidebar">
+      <p class="sidebar-label">当前任务</p>
+      <div id="task-note" class="task-note"></div>
+      <p class="sidebar-label">内存状态</p>
+      <pre id="state-inspector"></pre>
+      <p class="state-hint">刷新页面会清空流程状态，仅保留 URL 中的首页方案。</p>
+    </aside>
+  </main>
+
+  <div id="toast" class="toast" role="status" hidden></div>
+
+  <div class="variant-switcher" aria-label="首页方案切换">
+    <button data-action="previous-variant" aria-label="上一个首页方案">←</button>
+    <span id="variant-label"></span>
+    <button data-action="next-variant" aria-label="下一个首页方案">→</button>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
